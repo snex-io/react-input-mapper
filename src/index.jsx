@@ -166,7 +166,11 @@ class InputMapper extends Component {
   render() {
     const { map } = this.state;
     const reverseMap = Object.keys(map).reduce((reverseMap, keyCode) => {
-      reverseMap[map[keyCode]] = keyCode;
+      const key = map[keyCode];
+      if (!reverseMap[key]) {
+        reverseMap[key] = [];
+      }
+      reverseMap[map[keyCode]].push(keyCode);
       return reverseMap;
     }, {});
 
@@ -195,7 +199,9 @@ class InputMapper extends Component {
                     {keyName}
                   </th>
                   <td>
-                    {keyCodeToHuman(reverseMap[keyName])}
+                    {reverseMap[keyName]
+                      .map(keyCode => keyCodeToHuman(keyCode))
+                      .join(" ")}
                   </td>
                 </tr>
               );
