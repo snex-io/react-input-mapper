@@ -1,7 +1,7 @@
 {
   "name": "@snex/react-input-mapper",
   "description": "Widget for displaying an on-screen gamepad allowing remapping of keyboard controls.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "http://snex.io",
   "license": "ISC",
   "author": "Pontus Alexander",
