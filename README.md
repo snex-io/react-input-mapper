@@ -18,7 +18,7 @@ import InputMapper from '@snex/react-input-mapper';
 ```jsx
 <InputMapper
   svgURL='/graphics/nes.svg'
-  onEmit={(key, state) => console.log(`Button ${key} is in state ${state}`)}
+  onInput={({key, state}) => console.log(`Button ${key} is pressed`, state)}
 />
 ```
 
