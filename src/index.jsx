@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const MESSAGE_AUTOHIDE = 3 * 1000;
 const ESC = 27;
 
-const DEFAULT = {
+const DEFAULT_MAP = {
   65: "LEFT",
   68: "RIGHT",
   87: "UP",
@@ -15,9 +15,17 @@ const DEFAULT = {
   69: "START",
 };
 
-function saveMap(key, map) {
-  window.localStorage.setItem(key, JSON.stringify(map));
-}
+const HUMAN_CODES = {
+  37: 11104,
+  38: 11105,
+  39: 11106,
+  40: 11107,
+};
+
+const EVENT_TYPE_MAP = {
+  keydown: true,
+  keyup: false,
+};
 
 function loadMap(key) {
   const map = localStorage.getItem(key);
@@ -26,18 +34,14 @@ function loadMap(key) {
       return JSON.parse(map);
     } catch (e) {
       console.error("Map restore failed", e);
-      return DEFAULT;
     }
   }
-  return DEFAULT;
+  return DEFAULT_MAP;
 }
 
-const HUMAN_CODES = {
-  37: 11104,
-  38: 11105,
-  39: 11106,
-  40: 11107,
-};
+function saveMap(key, map) {
+  window.localStorage.setItem(key, JSON.stringify(map));
+}
 
 function keyCodeToHuman(keyCode) {
   return HUMAN_CODES[keyCode]
@@ -47,7 +51,7 @@ function keyCodeToHuman(keyCode) {
 
 class InputMapper extends Component {
   static propTypes = {
-    onEmit: PropTypes.func.isRequired,
+    onInput: PropTypes.func.isRequired,
     svgURL: PropTypes.string.isRequired,
     localStorageKey: PropTypes.string.isRequired,
   };
@@ -160,7 +164,9 @@ class InputMapper extends Component {
 
     const { keyCode } = event;
     const { map } = this.state;
-    if (map[keyCode]) this.props.onEmit(map[keyCode], event.type);
+    if (map[keyCode]) {
+      this.props.onInput(map[keyCode], EVENT_TYPE_MAP[event.type]);
+    }
   }
 
   render() {
