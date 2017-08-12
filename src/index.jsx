@@ -165,7 +165,10 @@ class InputMapper extends Component {
     const { keyCode } = event;
     const { map } = this.state;
     if (map[keyCode]) {
-      this.props.onInput(map[keyCode], EVENT_TYPE_MAP[event.type]);
+      this.props.onInput({
+        key: map[keyCode],
+        state: EVENT_TYPE_MAP[event.type],
+      });
     }
   }
 
