@@ -219,13 +219,15 @@ class InputMapper extends Component {
             </tbody>
           </table>
 
-          <a
-            className="hide-key-map"
-            style={{ cursor: "pointer" }}
-            onClick={() => this.setState({ showMap: false })}
-          >
-            Hide Key Map
-          </a>
+          <small>
+            <a
+              className="hide-key-map"
+              style={{ cursor: "pointer" }}
+              onClick={() => this.setState({ showMap: false })}
+            >
+              Hide Key Map
+            </a>
+          </small>
         </div>
 
         <div className="controller" style={{ position: "relative" }}>
@@ -251,14 +253,16 @@ class InputMapper extends Component {
             {this.state.showMessage
               ? this.state.message
               : !this.state.showMap
-                ? <a
-                    className="show-key-map"
-                    style={{ cursor: "pointer" }}
-                    onClick={() =>
-                      this.setState({ showMap: !this.state.showMap })}
-                  >
-                    Show Key Map
-                  </a>
+                ? <small>
+                    <a
+                      className="show-key-map"
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        this.setState({ showMap: !this.state.showMap })}
+                    >
+                      Show Key Map
+                    </a>
+                  </small>
                 : null}
           </div>
         </div>
