@@ -201,20 +201,22 @@ class InputMapper extends Component {
           }}
         >
           <table>
-            {this.keyOrder.map(keyName => {
-              return (
-                <tr>
-                  <th>
-                    {keyName}
-                  </th>
-                  <td>
-                    {reverseMap[keyName]
-                      .map(keyCode => keyCodeToHuman(keyCode))
-                      .join(" ")}
-                  </td>
-                </tr>
-              );
-            })}
+            <tbody>
+              {this.keyOrder.map(keyName => {
+                return (
+                  <tr key={keyName}>
+                    <th>
+                      {keyName}
+                    </th>
+                    <td>
+                      {reverseMap[keyName]
+                        .map(keyCode => keyCodeToHuman(keyCode))
+                        .join(" ")}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
 
           <a
