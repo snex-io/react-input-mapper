@@ -252,18 +252,20 @@ class InputMapper extends Component {
           >
             {this.state.showMessage
               ? this.state.message
-              : !this.state.showMap
-                ? <small>
-                    <a
-                      className="show-key-map"
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        this.setState({ showMap: !this.state.showMap })}
-                    >
-                      Show Key Map
-                    </a>
-                  </small>
-                : null}
+              : <small>
+                  <a
+                    className="show-key-map"
+                    style={{
+                      cursor: "pointer",
+                      opacity: this.state.showMap ? 0 : 1,
+                      transition: "opacity 0.5s ease",
+                    }}
+                    onClick={() =>
+                      this.setState({ showMap: !this.state.showMap })}
+                  >
+                    Show Key Map
+                  </a>
+                </small>}
           </div>
         </div>
       </div>
